@@ -6,6 +6,11 @@
     <result column="uid" jdbcType="BIGINT" property="uid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="balance" jdbcType="BIGINT" property="balance" />
+    <result column="createDate" jdbcType="VARCHAR" property="createdate" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="modifyDate" jdbcType="VARCHAR" property="modifydate" />
+    <result column="modifyTime" jdbcType="VARCHAR" property="modifytime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `uid`, `name`, `password`
+    id, `uid`, `name`, `password`, balance, createDate, createTime, modifyDate, modifyTime
   </sql>
   <select id="selectByExample" parameterType="com.chris.counter.domain.AccountExample" resultMap="BaseResultMap">
     select
@@ -100,9 +105,13 @@
   </delete>
   <insert id="insert" parameterType="com.chris.counter.domain.Account">
     insert into t_user (id, `uid`, `name`, 
-      `password`)
+      `password`, balance, createDate, 
+      createTime, modifyDate, modifyTime
+      )
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+      #{password,jdbcType=VARCHAR}, #{balance,jdbcType=BIGINT}, #{createdate,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{modifydate,jdbcType=VARCHAR}, #{modifytime,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.chris.counter.domain.Account">
     insert into t_user
@@ -119,6 +128,21 @@
       <if test="password != null">
         `password`,
       </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="modifydate != null">
+        modifyDate,
+      </if>
+      <if test="modifytime != null">
+        modifyTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -132,6 +156,21 @@
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +195,21 @@
       <if test="record.password != null">
         `password` = #{record.password,jdbcType=VARCHAR},
       </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=BIGINT},
+      </if>
+      <if test="record.createdate != null">
+        createDate = #{record.createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifydate != null">
+        modifyDate = #{record.modifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifytime != null">
+        modifyTime = #{record.modifytime,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +220,12 @@
     set id = #{record.id,jdbcType=INTEGER},
       `uid` = #{record.uid,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
-      `password` = #{record.password,jdbcType=VARCHAR}
+      `password` = #{record.password,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=BIGINT},
+      createDate = #{record.createdate,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=VARCHAR},
+      modifyDate = #{record.modifydate,jdbcType=VARCHAR},
+      modifyTime = #{record.modifytime,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +242,21 @@
       <if test="password != null">
         `password` = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        modifyDate = #{modifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        modifyTime = #{modifytime,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -190,7 +264,12 @@
     update t_user
     set `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR}
+      `password` = #{password,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=BIGINT},
+      createDate = #{createdate,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      modifyDate = #{modifydate,jdbcType=VARCHAR},
+      modifyTime = #{modifytime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

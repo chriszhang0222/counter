@@ -12,6 +12,16 @@ public class Account {
 
     private String password;
 
+    private Long balance;
+
+    private String createdate;
+
+    private String createtime;
+
+    private String modifydate;
+
+    private String modifytime;
+
     public Integer getId() {
         return id;
     }
@@ -44,6 +54,46 @@ public class Account {
         this.password = password;
     }
 
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
+    }
+
+    public String getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(String createdate) {
+        this.createdate = createdate;
+    }
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getModifydate() {
+        return modifydate;
+    }
+
+    public void setModifydate(String modifydate) {
+        this.modifydate = modifydate;
+    }
+
+    public String getModifytime() {
+        return modifytime;
+    }
+
+    public void setModifytime(String modifytime) {
+        this.modifytime = modifytime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -54,6 +104,11 @@ public class Account {
         sb.append(", uid=").append(uid);
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
+        sb.append(", balance=").append(balance);
+        sb.append(", createdate=").append(createdate);
+        sb.append(", createtime=").append(createtime);
+        sb.append(", modifydate=").append(modifydate);
+        sb.append(", modifytime=").append(modifytime);
         sb.append("]");
         return sb.toString();
     }
