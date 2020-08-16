@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class LoginController {
     @Autowired
     private CounterConfig counterConfig;
 
-    @RequestMapping("/captcha")
+    @RequestMapping(value = "/captcha")
     public CommonResponse getCaptcha() throws Exception{
         Captcha captcha = new Captcha(120, 40, 4, 10);
         UuidUtil uuidUtil = new UuidUtil(counterConfig.getDataCenterId(), counterConfig.getWorkerId());
