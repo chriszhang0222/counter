@@ -19,5 +19,12 @@ mybatis-plus:
     jdbc-type-for-null: 'null'
 
 
+cacheexpire:
+  captcha: 100
+  account: 3600
+  order: 36000
 
+counter:
+  dataCenterId: 0
 
+  workerId: 0
