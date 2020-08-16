@@ -4,6 +4,7 @@ import com.chris.counter.domain.Account;
 import com.chris.counter.domain.AccountExample;
 import java.util.List;
 
+import com.chris.counter.dto.AccountDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,4 +31,9 @@ public interface AccountMapper {
     int updateByPrimaryKeySelective(Account record);
 
     int updateByPrimaryKey(Account record);
+
+    AccountDto queryAccount(@Param("name") String name, @Param("password") String password);
+
+    int updateLoginTime(@Param("id") Integer id, @Param("modifyDate")String modifyDate,
+                        @Param("modifyTime")String modifyTime);
 }

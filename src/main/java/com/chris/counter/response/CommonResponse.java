@@ -18,5 +18,11 @@ public class CommonResponse<T> {
         this(0, "", data, true);
     }
 
+    public CommonResponse(int code, String message){
+        this.success = true;
+        this.code = code;
+        this.message = message;
+    }
+
 
 }

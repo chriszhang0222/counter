@@ -88,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}
@@ -104,12 +104,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.chris.counter.domain.Account">
-    insert into t_user (id, `uid`, `name`, 
-      `password`, balance, createDate, 
+    insert into t_user (id, `uid`, `name`,
+      `password`, balance, createDate,
       createTime, modifyDate, modifyTime
       )
-    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{balance,jdbcType=BIGINT}, #{createdate,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{balance,jdbcType=BIGINT}, #{createdate,jdbcType=VARCHAR},
       #{createtime,jdbcType=VARCHAR}, #{modifydate,jdbcType=VARCHAR}, #{modifytime,jdbcType=VARCHAR}
       )
   </insert>
@@ -271,5 +271,22 @@
       modifyDate = #{modifydate,jdbcType=VARCHAR},
       modifyTime = #{modifytime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryAccount" parameterType="map" resultType="com.chris.counter.dto.AccountDto">
+        select
+            t.id,
+            t.uid,
+            t.name,
+            t.modifydate as lastLoginDate,
+            t.modifytime as lastloginTime
+        from t_user t
+        where t.name = #{name}
+        and t.password = #{password}
+  </select>
+  <update id="updateLoginTime" parameterType="map">
+    update t_user
+    set modifyDate = #{modifydate,jdbcType=VARCHAR},
+        modifyTime = #{modifytime,jdbcType=VARCHAR}
+    where id = #{id, jdbcType=INTEGER}
   </update>
 </mapper>

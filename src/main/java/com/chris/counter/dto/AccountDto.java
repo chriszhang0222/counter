@@ -12,9 +12,8 @@ public class AccountDto {
     private Integer id;
     @NonNull
     private Long uid;
-    @NonNull
+    private String name;
     private String lastLoginDate;
-    @NonNull
     private String lastLoginTime;
     private Long balance;
     private String token;
