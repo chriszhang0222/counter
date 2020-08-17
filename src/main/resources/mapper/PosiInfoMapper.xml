@@ -84,7 +84,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_posi
     where id = #{id,jdbcType=INTEGER}
@@ -100,9 +100,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.chris.counter.domain.PosiInfo">
-    insert into t_posi (id, `uid`, code, 
+    insert into t_posi (id, `uid`, code,
       cost, `count`)
-    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{code,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{code,jdbcType=INTEGER},
       #{cost,jdbcType=BIGINT}, #{count,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.chris.counter.domain.PosiInfo">
@@ -208,4 +208,17 @@
       `count` = #{count,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryPosi" parameterType="map" resultType="com.chris.counter.domain.PosiInfo">
+        select
+                t.id,
+                t.uid,
+                t.code,
+                t.cost,
+                t.count,
+                s.name
+                from t_posi t, t_stock s
+                where t.uid = #{uid, jdbcType=BIGINT}
+                and t.code = s.code
+  </select>
 </mapper>

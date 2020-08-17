@@ -87,4 +87,12 @@ public class AccountService {
         accountMapper.updateByPrimaryKey(account);
     }
 
+    public long getBalance(long uid){
+       Long res =  accountMapper.queryBalance(uid);
+       if(res == null){
+           return -1;
+       }
+       return res;
+    }
+
 }

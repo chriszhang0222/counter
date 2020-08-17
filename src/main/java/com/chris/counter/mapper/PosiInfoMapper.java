@@ -30,4 +30,6 @@ public interface PosiInfoMapper {
     int updateByPrimaryKeySelective(PosiInfo record);
 
     int updateByPrimaryKey(PosiInfo record);
+
+    List<PosiInfo> queryPosi(@Param("uid") Long uid);
 }

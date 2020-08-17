@@ -36,4 +36,6 @@ public interface AccountMapper {
 
     int updateLoginTime(@Param("id") Integer id, @Param("modifyDate")String modifyDate,
                         @Param("modifyTime")String modifyTime);
+
+    long queryBalance(@Param("uid") Long uid);
 }

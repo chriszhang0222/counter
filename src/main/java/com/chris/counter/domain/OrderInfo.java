@@ -1,5 +1,8 @@
 package com.chris.counter.domain;
 
+import lombok.Data;
+
+@Data
 public class OrderInfo {
     private Integer id;
 
@@ -20,6 +23,8 @@ public class OrderInfo {
     private String date;
 
     private String time;
+
+    private String name;
 
     public Integer getId() {
         return id;
@@ -101,23 +106,4 @@ public class OrderInfo {
         this.time = time;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", uid=").append(uid);
-        sb.append(", code=").append(code);
-        sb.append(", direction=").append(direction);
-        sb.append(", type=").append(type);
-        sb.append(", price=").append(price);
-        sb.append(", ocount=").append(ocount);
-        sb.append(", status=").append(status);
-        sb.append(", date=").append(date);
-        sb.append(", time=").append(time);
-        sb.append("]");
-        return sb.toString();
-    }
 }

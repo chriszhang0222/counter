@@ -30,4 +30,6 @@ public interface TradeInfoMapper {
     int updateByPrimaryKeySelective(TradeInfo record);
 
     int updateByPrimaryKey(TradeInfo record);
+
+    List<TradeInfo> queryTrade(@Param("uid") Long uid);
 }

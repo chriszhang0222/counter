@@ -88,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_trade
     where id = #{id,jdbcType=BIGINT}
@@ -104,11 +104,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.chris.counter.domain.TradeInfo">
-    insert into t_trade (id, `uid`, code, 
-      direction, price, tcount, 
+    insert into t_trade (id, `uid`, code,
+      direction, price, tcount,
       oid, `date`, `time`)
-    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{code,jdbcType=INTEGER}, 
-      #{direction,jdbcType=INTEGER}, #{price,jdbcType=BIGINT}, #{tcount,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{code,jdbcType=INTEGER},
+      #{direction,jdbcType=INTEGER}, #{price,jdbcType=BIGINT}, #{tcount,jdbcType=BIGINT},
       #{oid,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.chris.counter.domain.TradeInfo">
@@ -270,4 +270,21 @@
       `time` = #{time,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="queryTrade" parameterType="map" resultType="com.chris.counter.domain.TradeInfo">
+    select
+      t.id,
+      t.uid,
+      t.code,
+      t.direction,
+      t.price,
+      t.tcount,
+      t.oid,
+      t.date,
+      t.time,
+      s.name
+    from t_trade t, t_stock s
+    where t.uid = #{uid, jdbcType=BIGINT}
+      and t.code = s.code
+  </select>
 </mapper>

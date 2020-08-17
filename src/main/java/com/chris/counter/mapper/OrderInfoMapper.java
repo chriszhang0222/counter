@@ -30,4 +30,6 @@ public interface OrderInfoMapper {
     int updateByPrimaryKeySelective(OrderInfo record);
 
     int updateByPrimaryKey(OrderInfo record);
+
+    List<OrderInfo> queryOrder(@Param("uid")Long uid);
 }

@@ -1,5 +1,8 @@
 package com.chris.counter.domain;
 
+import lombok.Data;
+
+@Data
 public class PosiInfo {
     private Integer id;
 
@@ -10,6 +13,8 @@ public class PosiInfo {
     private Long cost;
 
     private Long count;
+
+    private String name;
 
     public Integer getId() {
         return id;
@@ -51,18 +56,4 @@ public class PosiInfo {
         this.count = count;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", uid=").append(uid);
-        sb.append(", code=").append(code);
-        sb.append(", cost=").append(cost);
-        sb.append(", count=").append(count);
-        sb.append("]");
-        return sb.toString();
-    }
 }
