@@ -42,8 +42,6 @@ public class SessionCheckFilter implements Filter {
                             .forward(servletRequest, servletResponse);
                 }
 
-            }else{
-                filterChain.doFilter(servletRequest, servletResponse);
             }
         }
 

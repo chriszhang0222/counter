@@ -34,7 +34,7 @@ public class AccountService {
             String captchaInCache = RedisStringCache.get(captchaId, CacheType.CAPTCHA);
             if(StringUtils.isEmpty(captchaInCache)){
                 throw new CounterException("Captcha has expired!");
-            }else if(!captchaInCache.equals(captcha)){
+            }else if(!captchaInCache.toLowerCase().equals(captcha.toLowerCase())){
                 throw new CounterException("Wrong captcha");
             }
             RedisStringCache.remove(captchaId, CacheType.CAPTCHA);

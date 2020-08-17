@@ -49,7 +49,6 @@ public class LoginController {
             @RequestParam String captchaId
 
     ) throws CounterException {
-
         AccountDto accountDto = accountService.login(name, password, captcha, captchaId);
         return accountDto;
     }
