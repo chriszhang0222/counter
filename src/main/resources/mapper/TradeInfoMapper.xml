@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chris.counter.mapper.TradeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.chris.counter.domain.TradeInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="direction" jdbcType="INTEGER" property="direction" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="tcount" jdbcType="BIGINT" property="tcount" />
+    <result column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `uid`, code, direction, price, tcount, oid, `date`, `time`
+  </sql>
+  <select id="selectByExample" parameterType="com.chris.counter.domain.TradeInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_trade
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_trade
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chris.counter.domain.TradeInfoExample">
+    delete from t_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chris.counter.domain.TradeInfo">
+    insert into t_trade (id, `uid`, code, 
+      direction, price, tcount, 
+      oid, `date`, `time`)
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{code,jdbcType=INTEGER}, 
+      #{direction,jdbcType=INTEGER}, #{price,jdbcType=BIGINT}, #{tcount,jdbcType=BIGINT}, 
+      #{oid,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chris.counter.domain.TradeInfo">
+    insert into t_trade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="direction != null">
+        direction,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="tcount != null">
+        tcount,
+      </if>
+      <if test="oid != null">
+        oid,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="tcount != null">
+        #{tcount,jdbcType=BIGINT},
+      </if>
+      <if test="oid != null">
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chris.counter.domain.TradeInfoExample" resultType="java.lang.Long">
+    select count(*) from t_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_trade
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.uid != null">
+        `uid` = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=INTEGER},
+      </if>
+      <if test="record.direction != null">
+        direction = #{record.direction,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.tcount != null">
+        tcount = #{record.tcount,jdbcType=BIGINT},
+      </if>
+      <if test="record.oid != null">
+        oid = #{record.oid,jdbcType=INTEGER},
+      </if>
+      <if test="record.date != null">
+        `date` = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null">
+        `time` = #{record.time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_trade
+    set id = #{record.id,jdbcType=BIGINT},
+      `uid` = #{record.uid,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=INTEGER},
+      direction = #{record.direction,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=BIGINT},
+      tcount = #{record.tcount,jdbcType=BIGINT},
+      oid = #{record.oid,jdbcType=INTEGER},
+      `date` = #{record.date,jdbcType=VARCHAR},
+      `time` = #{record.time,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chris.counter.domain.TradeInfo">
+    update t_trade
+    <set>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="direction != null">
+        direction = #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="tcount != null">
+        tcount = #{tcount,jdbcType=BIGINT},
+      </if>
+      <if test="oid != null">
+        oid = #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        `date` = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chris.counter.domain.TradeInfo">
+    update t_trade
+    set `uid` = #{uid,jdbcType=BIGINT},
+      code = #{code,jdbcType=INTEGER},
+      direction = #{direction,jdbcType=INTEGER},
+      price = #{price,jdbcType=BIGINT},
+      tcount = #{tcount,jdbcType=BIGINT},
+      oid = #{oid,jdbcType=INTEGER},
+      `date` = #{date,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
