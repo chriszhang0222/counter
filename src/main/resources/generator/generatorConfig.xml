@@ -39,8 +39,8 @@
                              targetPackage="com.chris.counter.mapper"
                              type="XMLMAPPER" />
 
-        <table tableName="t_trade" domainObjectName="TradeInfo"/>
-        <table tableName="t_order" domainObjectName="OrderInfo"/>
-        <table tableName="t_posi" domainObjectName="PosiInfo"/>
+<!--        <table tableName="t_trade" domainObjectName="TradeInfo"/>-->
+<!--        <table tableName="t_order" domainObjectName="OrderInfo"/>-->
+        <table tableName="t_stock" domainObjectName="Stock"/>
     </context>
 </generatorConfiguration>

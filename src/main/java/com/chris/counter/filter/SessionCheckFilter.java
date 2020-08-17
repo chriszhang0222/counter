@@ -36,7 +36,7 @@ public class SessionCheckFilter implements Filter {
                 if(accountService.accountInCache(
                        request.getParameter("token")
                 )){
-                    filterChain.doFilter(servletRequest, servletResponse);
+                    String token = request.getParameter("token");
                 }else{
                     request.getRequestDispatcher("/login/loginfail")
                             .forward(servletRequest, servletResponse);

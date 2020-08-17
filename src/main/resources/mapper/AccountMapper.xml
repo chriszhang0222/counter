@@ -290,7 +290,7 @@
     where id = #{id, jdbcType=INTEGER}
   </update>
 
-  <select id="queryBalance" parameterType="map" resultType="java.lang.Long;">
+  <select id="queryBalance" parameterType="map" resultType="java.lang.Long">
         select t.balance
         from t_user t
         where t.uid = #{uid};
