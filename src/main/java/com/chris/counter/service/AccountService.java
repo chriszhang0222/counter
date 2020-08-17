@@ -3,6 +3,8 @@ package com.chris.counter.service;
 import com.alibaba.fastjson.JSON;
 import com.chris.counter.Exception.CounterException;
 import com.chris.counter.config.CounterConfig;
+import com.chris.counter.domain.Account;
+import com.chris.counter.domain.AccountExample;
 import com.chris.counter.dto.AccountDto;
 import com.chris.counter.mapper.AccountMapper;
 import com.chris.counter.util.CacheType;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -65,6 +68,23 @@ public class AccountService {
             return true;
         }
         return false;
+    }
+
+    public boolean logout(String token){
+       RedisStringCache.remove(token, CacheType.ACCOUNT);
+       return true;
+    }
+
+    public void savePassword(Long uid, String oldPassword, String newPassword) throws CounterException{
+        AccountExample accountExample = new AccountExample();
+        accountExample.createCriteria().andUidEqualTo(uid).andPasswordEqualTo(oldPassword);
+        List<Account> accountList = accountMapper.selectByExample(accountExample);
+        if(accountList.size() == 0){
+            throw new CounterException("Old password does not correct!");
+        }
+        Account account = accountList.get(0);
+        account.setPassword(newPassword);
+        accountMapper.updateByPrimaryKey(account);
     }
 
 }

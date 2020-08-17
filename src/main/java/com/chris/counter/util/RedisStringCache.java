@@ -42,7 +42,7 @@ public class RedisStringCache {
 
     public static void remove(String key, CacheType cacheType){
 
-        redisStringCache.getRedisTemplate().delete(cacheType + key);
+        redisStringCache.getRedisTemplate().delete(cacheType.type() + key);
     }
 
     public static void cache(String key, String value, CacheType cacheType){

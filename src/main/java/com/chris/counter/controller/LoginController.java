@@ -13,10 +13,7 @@ import com.chris.counter.util.UuidUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -53,8 +50,21 @@ public class LoginController {
         return accountDto;
     }
 
-    @RequestMapping("loginfail")
+    @RequestMapping("/loginfail")
     public CommonResponse loginfail(){
         return new CommonResponse(1, "You need to login!", null, false);
+    }
+
+    @RequestMapping(value = "/logout")
+    public CommonResponse logout(@RequestParam String token){
+        accountService.logout(token);
+        return new CommonResponse(0, "OK");
+    }
+
+    @RequestMapping(value = "/save-password")
+    public CommonResponse changePassword(@RequestParam Long uid, @RequestParam String oldPassword, @RequestParam String newPassword)
+    throws CounterException{
+        accountService.savePassword(uid, oldPassword, newPassword);
+        return new CommonResponse(0, "ok");
     }
 }
