@@ -3,8 +3,12 @@ package com.chris.counter.mapper;
 import com.chris.counter.domain.Stock;
 import com.chris.counter.domain.StockExample;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface StockMapper {
     long countByExample(StockExample example);
 
@@ -27,4 +31,6 @@ public interface StockMapper {
     int updateByPrimaryKeySelective(Stock record);
 
     int updateByPrimaryKey(Stock record);
+
+    List<Map<String, Object>> queryStock();
 }

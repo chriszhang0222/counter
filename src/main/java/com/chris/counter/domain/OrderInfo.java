@@ -18,6 +18,8 @@ public class OrderInfo {
 
     private Long ocount;
 
+    private Long tcount;
+
     private Integer status;
 
     private String date;

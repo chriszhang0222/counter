@@ -26,5 +26,5 @@ cacheexpire:
 
 counter:
   dataCenterId: 0
-
+  id: 1000
   workerId: 0

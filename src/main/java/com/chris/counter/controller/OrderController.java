@@ -1,25 +1,32 @@
 package com.chris.counter.controller;
 
+import com.chris.common.CmdType;
+import com.chris.common.OrderDirection;
+import com.chris.common.OrderDto;
+import com.chris.common.OrderType;
+import com.chris.counter.Cache.StockCache;
 import com.chris.counter.Exception.CounterException;
-import com.chris.counter.domain.AccountExample;
-import com.chris.counter.domain.OrderInfo;
-import com.chris.counter.domain.PosiInfo;
-import com.chris.counter.domain.TradeInfo;
+import com.chris.counter.domain.*;
+import com.chris.counter.response.CommonResponse;
 import com.chris.counter.service.AccountService;
 import com.chris.counter.service.OrderService;
 import com.chris.counter.service.PosiService;
 import com.chris.counter.service.TradeService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+
+    @Value("${counter.id}")
+    private short memberId;
 
     @Resource
     private AccountService accountService;
@@ -32,6 +39,9 @@ public class OrderController {
 
     @Resource
     private TradeService tradeService;
+
+    @Autowired
+    private StockCache stockCache;
 
     @PostMapping("/balance")
     public long balanceQuery(@RequestParam long uid) throws CounterException{
@@ -56,6 +66,34 @@ public class OrderController {
         return tradeService.getTradeList(uid);
     }
 
+    @PostMapping("/code")
+    public Collection<Stock> stockQuery(@RequestParam String key){
+        return stockCache.getStocks(key);
+    }
 
-
+    @PostMapping("/sendorder")
+    public CommonResponse saveOrder(@RequestParam int uid,
+                                    @RequestParam short type,
+                                    @RequestParam long timestamp,
+                                    @RequestParam int code,
+                                    @RequestParam byte direction,
+                                    @RequestParam long price,
+                                    @RequestParam long volume,
+                                    @RequestParam byte ordertype)
+    throws CounterException{
+        OrderDto orderDto = OrderDto.builder()
+                .type(CmdType.of(type))
+                .timestamp(timestamp)
+                .mid(memberId)
+                .uid(uid)
+                .code(code)
+                .direction(OrderDirection.of(ordertype))
+                .price(price)
+                .volume(volume)
+                .orderType(OrderType.of(ordertype))
+                .direction(OrderDirection.of(direction))
+                .build();
+        orderService.saveOrder(orderDto);
+        return new CommonResponse(0, "OK");
+    }
 }
