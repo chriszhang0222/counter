@@ -1,11 +1,10 @@
 package com.chris.counter.service;
 
 import com.alibaba.fastjson.JSON;
-import com.chris.common.OrderDto;
-import com.chris.common.OrderStatus;
+import com.chris.common.order.OrderDto;
+import com.chris.common.order.OrderStatus;
 import com.chris.counter.Exception.CounterException;
 import com.chris.counter.domain.OrderInfo;
-import com.chris.counter.domain.OrderInfoExample;
 import com.chris.counter.mapper.OrderInfoMapper;
 import com.chris.counter.util.CacheType;
 import com.chris.counter.util.RedisStringCache;

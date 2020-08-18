@@ -1,9 +1,7 @@
-package com.chris.common;
+package com.chris.common.order;
 
 import lombok.Builder;
 import lombok.Data;
-
-import java.io.Serializable;
 
 @Data
 @Builder

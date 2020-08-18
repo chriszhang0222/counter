@@ -1,4 +1,4 @@
-package com.chris.common;
+package com.chris.common.order;
 
 import lombok.Getter;
 

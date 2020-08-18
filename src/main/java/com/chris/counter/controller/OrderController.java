@@ -1,9 +1,9 @@
 package com.chris.counter.controller;
 
-import com.chris.common.CmdType;
-import com.chris.common.OrderDirection;
-import com.chris.common.OrderDto;
-import com.chris.common.OrderType;
+import com.chris.common.order.CmdType;
+import com.chris.common.order.OrderDirection;
+import com.chris.common.order.OrderDto;
+import com.chris.common.order.OrderType;
 import com.chris.counter.Cache.StockCache;
 import com.chris.counter.Exception.CounterException;
 import com.chris.counter.domain.*;
@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
