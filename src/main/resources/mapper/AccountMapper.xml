@@ -295,4 +295,10 @@
         from t_user t
         where t.uid = #{uid};
   </select>
+
+  <update id="updateBalance" parameterType="map">
+        update t_user
+        set balance = balance + #{balance}
+        where uid = #{uid}
+  </update>
 </mapper>

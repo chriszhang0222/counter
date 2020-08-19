@@ -38,4 +38,6 @@ public interface AccountMapper {
                         @Param("modifyTime")String modifyTime);
 
     long queryBalance(@Param("uid") Long uid);
+
+    int updateBalance(@Param("uid") Long uid, @Param("balance")Long banalce);
 }

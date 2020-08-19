@@ -21,7 +21,6 @@ public class CommonMsg implements Serializable {
     private byte status;
     private long msgNo;
 
-    @ToString.Exclude
     private byte[] body;
 
     private boolean isLegal;

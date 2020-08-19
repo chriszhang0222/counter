@@ -3,13 +3,12 @@ package com.chris.common.order;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @Builder
-public class OrderDto {
+public class OrderDto implements Serializable {
 
-    public short f_type;
-    public byte f_direction;
-    public byte f_ordertype;
 
     public CmdType type;
 
