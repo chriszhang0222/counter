@@ -34,3 +34,5 @@ build/
 !/src/test/
 
 .DS_Store
+
+logs/

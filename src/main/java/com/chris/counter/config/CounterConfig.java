@@ -35,6 +35,15 @@ public class CounterConfig {
     @Value("${counter.gatewayid}")
     private short gatewayId;
 
+    @Value("${counter.subbusIp}")
+    private String subBusIp;
+
+    @Value("${counter.subbusport}")
+    private int subBusPort;
+
+    @Value("${counter.websocketport}")
+    private int webSocketPort;
+
     private Vertx vertx = Vertx.vertx();
 
     private ICheckSum cs;

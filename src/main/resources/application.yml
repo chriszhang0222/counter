@@ -31,3 +31,8 @@ counter:
   sendip: 127.0.0.1
   sendport: 8091
   gatewayid: 1001
+  subbusIp: 127.0.0.1
+  subbusport: 1883
+
+  #websocket
+  websocketport: 8501

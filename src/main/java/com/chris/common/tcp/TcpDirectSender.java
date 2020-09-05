@@ -99,7 +99,7 @@ public class TcpDirectSender {
         }
     }
 
-    private final BlockingQueue<Buffer> sendCache = new LinkedBlockingQueue<>();
+    //private final BlockingQueue<Buffer> sendCache = new LinkedBlockingQueue<>();
 
     public void startup(){
         vertx.createNetClient().connect(port, ip, new ClientConnHandler());
